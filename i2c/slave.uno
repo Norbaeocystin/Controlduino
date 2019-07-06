@@ -36,7 +36,7 @@ while(Wire.available()) {
 }
 // callback for sending data
 void sendData(){
-    //split value to two bytes, maximal value is 1023 - 7 bit
+    //split value to two bytes, maximal value is 1023 - 10 bit
     //to get number on master side multiply first byte with 128 and add second byte
     int first_byte = light >> 7;
     int second_byte = light - (first_byte * 128);
