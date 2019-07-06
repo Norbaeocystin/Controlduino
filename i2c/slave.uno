@@ -12,7 +12,6 @@ void setup() {
     Serial.begin(9600); // start serial for output
     // initialize i2c as slave
     Wire.begin(SLAVE_ADDRESS);
-
     // define callbacks for i2c communication
     Wire.onReceive(receiveData);
     Wire.onRequest(sendData);
@@ -38,6 +37,7 @@ while(Wire.available()) {
 // callback for sending data
 void sendData(){
     //split value to two bytes, maximal value is 1023 - 7 bit
+    //to get number on master side multiply first byte with 128 and add second byte
     int first_byte = light >> 7;
     int second_byte = light - (first_byte * 128);
     Wire.write(first_byte);
